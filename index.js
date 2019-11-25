@@ -4,11 +4,13 @@ import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
 
 class Home extends Component {
-  componenDidMount() {
+  componentDidMount() {
+    console.log("HOME--------------");
     this.getPush();
   }
 
   getPush = async () => {
+    console.log("get push---------");
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
     );
@@ -23,7 +25,7 @@ class Home extends Component {
       return;
     }
     let token = await Notifications.getExpoPushTokenAsync();
-    alert(token);
+    console.log("token------", token);
     fetch("https://exp.host/--/api/v2/push/send", {
       method: "POST",
       headers: {
@@ -49,6 +51,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log("render home---------");
     return (
       <View>
         <Text>Hello World!</Text>
